@@ -685,22 +685,8 @@ inline bool ImGui::FileBrowser::HasSelected() const noexcept
 
 inline bool ImGui::FileBrowser::SetPwd(const std::filesystem::path &pwd)
 {
-    try
-    {
-        SetPwdUncatched(pwd);
-        return true;
-    }
-    catch(const std::exception &err)
-    {
-        statusStr_ = std::string("last error: ") + err.what();
-    }
-    catch(...)
-    {
-        statusStr_ = "last error: unknown";
-    }
-
-    SetPwdUncatched(std::filesystem::current_path());
-    return false;
+    SetPwdUncatched(pwd);
+    return true;
 }
 
 inline const class std::filesystem::path &ImGui::FileBrowser::GetPwd() const noexcept
